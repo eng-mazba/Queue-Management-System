@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>Teller</title>
+    <link rel="stylesheet" th:href="@{/bootstrap/css/bootstrap.min.css}">
+    <link rel="stylesheet" th:href="@{/dist/css/AdminLTE.min.css}">
+    <style>
+        table {
+            /*border: 3px solid #01B6AD;*/
+            width: 80%;
+            /*height: 50px;*/
+            margin: 0 auto;
+            /*font-size: 40px;*/
+            text-align: center;
+            padding: 0px;
+        }
+
+        td {
+            border: 2px solid #ffffff;
+            /*background-color: #01B6AD;*/
+            /*width:10%;*/
+            /*height: 50px;*/
+            /*margin: 0 auto;*/
+            /*font-size: 40px;*/
+            text-align: center;
+            /*padding: 2px;*/
+        }
+
+        img {
+            width: 100%;
+        }
+
+        .div-cont {
+            display: grid;
+            grid-template-columns: auto auto auto auto auto;
+            grid-gap: 1px;
+            /*border: 3px solid #01B6AD;*/
+            width: 80%;
+            height: 300px;
+            margin: 0 auto;
+        }
+
+        .cdiv {
+            border: 1px solid #01B6AD;
+            /*width:16.5%;*/
+            /*height: 200px;*/
+        }
+
+        body {
+            font-family: Arial, Helvetica, sans-serif;
+        }
+
+        /* The Modal (background) */
+        .modal {
+            display: none; /* Hidden by default */
+            position: fixed; /* Stay in place */
+            z-index: 1; /* Sit on top */
+            padding-top: 100px; /* Location of the box */
+            left: 0;
+            top: 0;
+            width: 100%; /* Full width */
+            height: 100%; /* Full height */
+            overflow: auto; /* Enable scroll if needed */
+            background-color: rgb(0, 0, 0); /* Fallback color */
+            background-color: rgba(0, 0, 0, 0.4); /* Black w/ opacity */
+        }
+
+        /* Modal Content */
+        .modal-content {
+            background-color: #fefefe;
+            margin: auto;
+            padding: 20px;
+            border: 1px solid #888;
+            width: 80%;
+        }
+
+        /* The Close Button */
+        .close {
+            color: #aaaaaa;
+            float: right;
+            font-size: 28px;
+            font-weight: bold;
+        }
+
+        .close:hover,
+        .close:focus {
+            color: #000;
+            text-decoration: none;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body style="background-color: #ddffff;">
+<div class="wrapper">
+    <header class="main-header">
+        <div style="width: 100%; height: 50px; background-color: #049b9d;">
+            <div class="navbar-custom-menu" style="background-color: #006666;">
+                <ul class="nav navbar-nav">
+                    <li>
+                        <a href="index.html" style="color: #ffffff;">Sign out</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </header>
+    <h1></h1>
+    <table>
+        <tr style="height: 80px;">
+
+            <td style="width: 20%; background-color: seagreen; font-size: 40px; color: #ffffff;">
+                <b>Counter No <span th:text="${session.users.loginDevice}"></span>
+                </b></td>
+            <td style="background-color: darkslategrey; width: 30%; font-size: 30px; color: #ffffff;" colspan="3">
+                <b>Customer Name: <span th:text="${crntqueue.customerName}"></span>
+                </b></td>
+            <td style="background-color: darkorchid; width: 30%; font-size: 40px; color: #ffffff;" colspan="3"><b>Token
+                No <span th:text="${crntqueue.tokenNo}"></span></b></td>
+        </tr>
+        <tr style="width: 80%">
+            <td><a th:href="@{'/tellerrequest/next_' + ${crntqueue.id}}"><img th:src="@{/img/getnext.jpg}"
+                                                                              alt="Flowers in Chania"></a></td>
+            <td><img th:src="@{/img/callAgain.jpg}" alt="Flowers in Chania" onclick="play()"></td>
+            <audio id="audio" src="audio/036.mp3"></audio>
+            <td><a th:href="@{'/tellerrequest/stndby_' + ${crntqueue.id}}"><img th:src="@{/img/standby.jpg}"
+                                                                                alt="Flowers in Chania"></a></td>
+            <td><a th:href="@{'/tellerrequest/onhold_' + ${crntqueue.id}}"><img th:src="@{/img/onHold.jpg}"
+                                                                                alt="Flowers in Chania"></a></td>
+            <td><a th:href="@{'/tellerrequest/cancel_' + ${crntqueue.id}}"><img th:src="@{/img/Cancel.jpg}"
+                                                                                alt="Flowers in Chania"></a></td>
+            <td><a th:href="@{'/tellerrequest/finish_' + ${crntqueue.id}}"><img th:src="@{/img/finish.jpg}"
+                                                                                alt="Flowers in Chania"></a></td>
+            <td><img id="myBtn" onclick="modal()" th:src="@{/img/transfer.jpg}" alt="Flowers in Chania"></td>
+        </tr>
+    </table>
+    <h1></h1>
+    <div class="div-cont">
+        <div class="cdiv">
+            <div style="height: 40px; background-color: darkblue; color: #ffffff; text-align: center; font-size: 20px;">
+                <b> Waiting : <span th:text="${queuelist.size()}"></span></b></div>
+            <table class="table" style="font-size: 15px;">
+                <tr th:each="queue : ${queuelist}">
+                    <!--<td>1</td>-->
+                    <td th:text="${queue.tokenNo}">Token No</td>
+                </tr>
+
+            </table>
+        </div>
+        <div class="cdiv">
+            <div style="height: 40px; background-color: darkblue; color: #ffffff; text-align: center; font-size: 20px;">
+                <b>On Hold</b>
+            </div>
+        </div>
+        <div class="cdiv">
+            <div style="height: 40px; background-color: darkblue; color: #ffffff; text-align: center; font-size: 20px;">
+                <b>Transection</b></div>
+        </div>
+        <div class="cdiv">
+            <div style="height: 40px; background-color: darkblue; color: #ffffff; text-align: center; font-size: 20px;">
+                <b>Stand By</b></div>
+        </div>
+        <div class="cdiv">
+            <div style="height: 40px; background-color: darkblue; color: #ffffff; text-align: center; font-size: 20px;">
+                <b>Last Called</b></div>
+            <h1>#305</h1>
+        </div>
+    </div>
+    <div id="myModal" class="modal">
+
+        <!-- Modal content -->
+        <div class="modal-content" style="width: 25%; background-color: #ddffff; ">
+            <span class="close">&times;</span>
+            <form id="transfer-token" action="#" th:action="@{/transfertoken}" th:object="${crntqueue}" method="post"
+                  style="background-color: #01B6AD; padding: 30px;">
+                <input class="hidden" th:field="*{id}" >
+                <input class="hidden" th:field="*{counterNo}" >
+                <label for="tellerno" style="font-weight: bold; color: #ffffff;">Teller
+                </label>
+                <select id="tellerno" style="width: 240px;" th:field="*{tellerId}">
+                    <option th:value=0>Please Select Teller</option>
+                    <option th:value=1>Teller 1</option>
+                    <option th:value=2>Teller 2</option>
+                </select><br><br>
+                <label for="descrp" style="font-weight: bold; color: #ffffff;">Description
+                </label>
+                <input id="descrp" type="text" style="width: 240px;" th:field="*{description}"><br><br>
+                <button type="submit" style="width: 240px;">Transfer</button>
+            </form>
+        </div>
+    </div>
+</div>
+<script>
+    // Get the modal
+    var modal = document.getElementById("myModal");
+
+    // Get the button that opens the modal
+    var btn = document.getElementById("myBtn");
+    var printbtn = document.getElementById("mypriBtn");
+
+    // Get the <span> element that closes the modal
+    var span = document.getElementsByClassName("close")[0];
+
+    // When the user clicks the button, open the modal
+    btn.onclick = function (e) {
+        e.preventDefault()
+        modal.style.display = "block";
+//                alert('Successfully Create Your Token! \n\
+//Your Token No: #307\n\
+//Please Wait Approximately 30 Minutes For Your Service')
+    }
+
+    // When the user clicks on <span> (x), close the modal
+    span.onclick = function () {
+//                alert('gfhkk')
+        modal.style.display = "none";
+    }
+    printbtn.onclick = function () {
+//                alert('gfhkk')
+        modal.style.display = "none";
+    }
+
+    // When the user clicks anywhere outside of the modal, close it
+    window.onclick = function (event) {
+        if (event.target == modal) {
+//                    alert('windows')
+            modal.style.display = "none";
+        }
+    }
+</script>
+</body>
+</html>

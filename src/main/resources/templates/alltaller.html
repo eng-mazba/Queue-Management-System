@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>All Teller</title>
+    <link rel="stylesheet" th:href="@{/bootstrap/css/bootstrap.min.css}">
+    <!--<link rel="stylesheet" th:href="@{/dist/css/font-awesome.min.css}">-->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.5.0/css/font-awesome.min.css">
+</head>
+<body class="hold-transition skin-blue sidebar-mini">
+<div class="wrapper">
+    <header class="main-header">
+        <!--<a href="#" class="logo" style="background-color: #006666;">-->
+        <!--&lt;!&ndash; mini logo for sidebar mini 50x50 pixels &ndash;&gt;-->
+        <!--<b>QMS</b>-->
+        <!--</a>-->
+        <nav class="navbar navbar-static-top" style="background-color: #049b9d;">
+            <a href="#" class="sidebar-toggle" data-toggle="offcanvas" role="button">
+                <span class="sr-only">Toggle navigation</span>
+            </a>
+            <div class="navbar-custom-menu">
+                <ul class="nav navbar-nav">
+                    <li class="dropdown tasks-menu">
+                        <a href="index.html" class="btn ">Sign out</a>
+                    </li>
+                </ul>
+            </div>
+        </nav>
+    </header>
+    <section class="content" id="user">
+        <div class="row">
+            <div class="col-md-1"></div>
+            <div class="col-md-10">
+                <div class="box box-info">
+                    <div class="box-header with-border">
+                        <h3 class="box-title" id="dataStatic" style="alignment-adjust: central"><b>All Users</b></h3>
+                    </div>
+                    <div class="box-body">
+                        <button id="btnFind" class="btn btn-primary" th:onclick="'window.location.href = \'' + @{/addtaller} + '\''" >
+                            <i class="fa fa-plus"></i>&nbsp;&nbsp;New Teller
+                        </button>
+
+                        <!--<div>-->
+                        <br><br>
+                        <!--<div>-->
+                        <table class="table">
+                            <thead style="background-color: #049b9d; color: #ffffff; font-size: 20px; ">
+                            <tr>
+                                <th>#Id</th>
+                                <th>User Id</th>
+                                <th>First Name</th>
+                                <th>Last Name</th>
+                                <th>Contract No</th>
+                                <th>Email</th>
+                                <th>Designation</th>
+                                <th>Address</th>
+                                <th>Skill</th>
+                                <th>Manager Id</th>
+                                <th>Branch Id</th>
+                                <th>CompanyId Id</th>
+                                <th>Edit</th>
+                                <th>Delete</th>
+                            </tr>
+                            </thead>
+                            <tr th:each="teller : ${tellerList}">
+                                <td th:text="${teller.id}">ID</td>
+                                <td th:text="${teller.userId}">User Id</td>
+                                <td th:text="${teller.firstName}">First Name</td>
+                                <td th:text="${teller.lastName}">Last Name</td>
+                                <td th:text="${teller.contractNo}">Contract No</td>
+                                <td th:text="${teller.email}">Email</td>
+                                <td th:text="${teller.designation}">Designation</td>
+                                <td th:text="${teller.address}">Address</td>
+                                <td th:text="${teller.skill}">Skill</td>
+                                <td th:text="${teller.managerId}">Manager Id</td>
+                                <td th:text="${teller.branchId}">Branch Id</td>
+                                <td th:text="${teller.companyId}">Company Id</td>
+                                <td><a th:href="@{'/getteller/'+${teller.id}}">Edit<i class="fa fa-edit"></i></a>
+                                <td><a th:href="@{'/getteller/'+${teller.id}}">Edit<i class="fa fa-edit"></i></a>
+                                </td>
+                            </tr>
+
+                        </table>
+                    </div>
+                </div>
+                <!-- /.box -->
+            </div>
+            <div class="col-md-1"></div>
+        </div>
+    </section>
+</div>
+</body>
+</html>

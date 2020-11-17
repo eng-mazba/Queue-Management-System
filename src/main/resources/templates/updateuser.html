@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Edit User</title>
+    <link rel="stylesheet" th:href="@{/bootstrap/css/bootstrap.min.css}">
+    <style>
+        select, label, button, input, textarea {
+            width: 400px;
+            font-size: 20px;
+            color: #ffffff;
+            font-weight: bold;
+            margin: 0 auto;
+            /*                margin: 0 auto;
+                            text-align: left;
+                            font-size: 20px;*/
+            /*padding: 25px;*/
+        }
+
+        form {
+            width: 450px;
+            background-color: #01B6AD;
+            margin: 0 auto;
+            padding: 25px;
+            /*padding-top: 10px;*/
+        }
+    </style>
+</head>
+<div class="wrapper">
+    <header class="main-header">
+
+        <nav class="navbar navbar-static-top" style="background-color: #049b9d;">
+            <a href="#" class="sidebar-toggle" data-toggle="offcanvas" role="button">
+                <span class="sr-only">Toggle navigation</span>
+            </a>
+            <div class="navbar-custom-menu">
+                <ul class="nav navbar-nav">
+                    <li class="dropdown tasks-menu">
+                        <a href="index.html" class="btn">Sign out</a>
+                    </li>
+                </ul>
+            </div>
+        </nav>
+    </header>
+    <div class="content-wrapper" style="background-color: #9fe0e0;">
+        <!--<section class="content-header">-->
+        <h1>Add User</h1>
+        <!--</section>-->
+        <section class="content">
+            <form action="#" th:action="@{/updateuser}" th:object="${user}" method="post">
+                <input type="hidden" th:value="${user.id}" name='id'>
+                <label for="cname" style="font-size: 20px; color: #ffffff; font-weight: bold;">User Name
+                </label>
+                <input id="cname" type="text" style="font-size: 20px; color: #000000;" th:field="*{userName}"><br><br>
+                <label for="Id" style="font-size: 20px; color: #ffffff; font-weight: bold;">Password
+                </label>
+                <input id="Id" type="password" style="font-size: 20px; color: #000000;" th:field="*{password}"><br><br>
+                <label for="category" style="font-size: 20px; color: #ffffff; font-weight: bold;">User Type
+                </label>
+                <select id="category" style="font-size: 18.2px; color: #000000;" th:field="*{userType}">
+                    <option th:value="0">Please Select Type</option>
+                    <option th:value="1">Display</option>
+                    <option th:value="2">Token Counter</option>
+                    <option th:value="3">Teller</option>
+                    <option th:value="4">Manager</option>
+                </select><br><br>
+                <label for="validityDate" style="font-size: 20px; color: #ffffff; font-weight: bold;">validity Date
+                </label>
+                <input id="validityDate" style="font-size: 20px; color: #000000;" type="text"
+                       th:field="*{validityDate}">
+                <br><br>
+                <label for="branchId" style="font-size: 20px; color: #ffffff; font-weight: bold;">Branch Code
+                </label>
+                <input id="branchId" type="text" style="font-size: 20px; color: #000000;"  th:field="*{branchId}">
+                <input type="hidden" th:value="CO0001" name='companyId'>
+                <input type="hidden" th:value="1" name='userStatus'>
+                <br><br>
+                <button id="myBtn"
+                        style="font-size: 20px; color: #ffffff; font-weight: bold; height: 35px; background-color: #00bfa5;">
+                    Save
+                </button>
+            </form>
+        </section>
+    </div>
+</div>
+</body>
+</html>

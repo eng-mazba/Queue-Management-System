@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>Display Screen</title>
+    <link rel="stylesheet" th:href="@{/bootstrap/css/bootstrap.min.css}">
+    <link rel="stylesheet" th:href="@{/dist/css/AdminLTE.min.css}">
+    <style th:inline="text">
+
+        table, th, td {
+            border: 1px solid #01B6AD;
+            width: 50%;
+            /*height: 50px;*/
+            /*margin: 0 auto;*/
+            font-size: 40px;
+            text-align: center;
+            padding: 0px;
+        }
+    </style>
+    <style th:inline="text">
+        * {
+            box-sizing: border-box;
+        }
+
+        /*body {font-family: Verdana, sans-serif;}*/
+        .mySlides {
+            display: none;
+        }
+
+        img {
+            vertical-align: middle;
+        }
+
+        /* Slideshow container */
+        .slideshow-container {
+            /*max-width: 1000px;*/
+            position: relative;
+            margin: auto;
+        }
+
+        /* Caption text */
+        .text {
+            color: #f2f2f2;
+            font-size: 15px;
+            padding: 8px 12px;
+            position: absolute;
+            bottom: 8px;
+            width: 100%;
+            text-align: center;
+        }
+
+        /* Number text (1/3 etc) */
+        .numbertext {
+            color: #f2f2f2;
+            font-size: 12px;
+            padding: 8px 12px;
+            position: absolute;
+            top: 0;
+        }
+
+        /* The dots/bullets/indicators */
+        .dot {
+            height: 15px;
+            width: 15px;
+            margin: 0 2px;
+            background-color: #bbb;
+            border-radius: 50%;
+            display: inline-block;
+            transition: background-color 0.6s ease;
+        }
+
+        .active {
+            background-color: #717171;
+        }
+
+        /* Fading animation */
+        .fade {
+            -webkit-animation-name: fade;
+            -webkit-animation-duration: 1.5s;
+            animation-name: fade;
+            animation-duration: 1.5s;
+        }
+
+        @-webkit-keyframes fade {
+            from {
+                opacity: .4
+            }
+            to {
+                opacity: 1
+            }
+        }
+
+        @keyframes fade {
+            from {
+                opacity: .4
+            }
+            to {
+                opacity: 1
+            }
+        }
+
+        /* On smaller screens, decrease text size */
+        @media only screen and (max-width: 300px) {
+            .text {
+                font-size: 11px
+            }
+        }
+    </style>
+</head>
+<body>
+<div class="wrapper">
+    <header class="main-header">
+        <div style="width: 100%; height: 50px; background-color: #049b9d;">
+            <div class="navbar-custom-menu" style="background-color: #006666; height: 50px; width: 82px;">
+                <a href="index.html" style=" font-size: 20px; padding: 4px; height: 50px; width: 82px; color: #ffffff;">Sign
+                    out</a>
+            </div>
+        </div>
+    </header>
+    <scroll style="position:relative;padding-top:15px; font-size: 30px; background-color: yellow; color: red;">
+        <marquee>Token No. #307 Counter No. 03
+        </marquee>
+    </scroll>
+    <h1></h1>
+    <div class="row">
+        <div class="col-lg-1 "></div>
+        <div class="col-lg-5">
+            <table class="table">
+                <thead style="background-color: #049b9d; color: #ffffff;">
+                <tr>
+                    <th>Counter No</th>
+                    <th>Token No</th>
+                </tr>
+                </thead>
+                <tbody>
+                <!--/*@thymesVar id="queues" type=""*/-->
+                <tr th:each="queue : ${listqueue}">
+                    <td th:text="${queue.counterNo}">Counter No</td>
+                    <td th:text="${queue.tokenNo}">Token No</td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+        <div class="col-lg-5">
+            <div class="slideshow-container">
+
+                <div class="mySlides fade">
+                    <div class="numbertext">1 / 3</div>
+                    <img th:src="@{img/sliderimg/index.png}" style="width:100%">
+                    <div class="text">Caption Text</div>
+                </div>
+
+                <div class="mySlides fade">
+                    <div class="numbertext">2 / 3</div>
+                    <img th:src="@{img/sliderimg/image2.jpg}" style="width:100%">
+                    <div class="text">Caption Two</div>
+                </div>
+
+                <div class="mySlides fade">
+                    <div class="numbertext">3 / 3</div>
+                    <img th:src="@{img/sliderimg/image3.jpg}" style="width:100%">
+                    <div class="text">Caption Three</div>
+                </div>
+
+            </div>
+            <br>
+
+            <div style="text-align:center">
+                <span class="dot"></span>
+                <span class="dot"></span>
+                <span class="dot"></span>
+            </div>
+        </div>
+        <div class="col-lg-1"></div>
+    </div>
+</div>
+<script>
+    var slideIndex = 0;
+    showSlides();
+
+    function showSlides() {
+        var i;
+        var slides = document.getElementsByClassName("mySlides");
+        var dots = document.getElementsByClassName("dot");
+        for (i = 0; i < slides.length; i++) {
+            slides[i].style.display = "none";
+        }
+        slideIndex++;
+        if (slideIndex > slides.length) {
+            slideIndex = 1
+        }
+        for (i = 0; i < dots.length; i++) {
+            dots[i].className = dots[i].className.replace(" active", "");
+        }
+        slides[slideIndex - 1].style.display = "block";
+        dots[slideIndex - 1].className += " active";
+        setTimeout(showSlides, 2000); // Change image every 2 seconds
+    }
+</script>
+</body>
+</html>

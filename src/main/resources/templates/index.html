@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>Queue Management System</title>
+
+    <style th:inline="text">
+        /*body {*/
+
+        /*background: url('+@{/img/queue-managerbanner-1.jpg}+');*/
+        /*!*no-repeat center center fixed;*!*/
+        /*}*/
+
+        .grid-container {
+            display: grid;
+            grid-template-columns: auto auto;
+            grid-gap: 1px;
+            /*background-color: #2196F3;*/
+            width: 30.5%;
+            margin: 0 auto;
+            /*padding: 20px;*/
+            /*background: #f0e68c;*/
+            /*opacity: 0.5;*/
+        }
+    </style>
+</head>
+<body th:style="'background: url(/img/queue-managerbanner-1.jpg) no-repeat center center fixed;'">
+<!--<img th:src="@{img/queue-managerbanner-1.jpg}" alt="done"/>-->
+<!--<img th:src="@{/queue-managerbanner-1.jpg}"/>-->
+
+<h1 style="text-align:center; color: #ffffff;font-size: 40px;">Queue Management System</h1>
+<div class="grid-container">
+    <!--<div>-->
+    <a href="login/1">
+        <img th:src="@{/img/display.JPG}" height="200" alt="Flowers in Chania">
+    </a>
+    <!--</div>-->
+    <!--<div>-->
+    <a href="login/2">
+        <img th:src="@{/img/customer.JPG}" height="200" alt="Flowers in Chania">
+    </a>
+    <!--            </div>
+                <div>-->
+    <a href="login/3">
+        <img th:src="@{/img/Audio.JPG}" height="200" alt="Flowers in Chania">
+    </a>
+    <!--            </div>
+                <div>-->
+    <a href="login/4">
+        <img th:src="@{/img/Manegment.JPG}" height="200" alt="Flowers in Chania">
+    </a>
+    <!--</div>-->
+</div>
+</body>
+</html>

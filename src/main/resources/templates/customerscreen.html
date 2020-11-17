@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Token Counter</title>
+    <link rel="stylesheet" th:href="@{/bootstrap/css/bootstrap.min.css}">
+    <link rel="stylesheet" th:href="@{/dist/css/AdminLTE.min.css}">
+    <style>
+        body {
+            font-family: Arial, Helvetica, sans-serif;
+        }
+
+        /* The Modal (background) */
+        .modal {
+            display: none; /* Hidden by default */
+            position: fixed; /* Stay in place */
+            z-index: 1; /* Sit on top */
+            padding-top: 100px; /* Location of the box */
+            left: 0;
+            top: 0;
+            width: 100%; /* Full width */
+            height: 100%; /* Full height */
+            overflow: auto; /* Enable scroll if needed */
+            background-color: rgb(0, 0, 0); /* Fallback color */
+            background-color: rgba(0, 0, 0, 0.4); /* Black w/ opacity */
+        }
+
+        /* Modal Content */
+        .modal-content {
+            background-color: #fefefe;
+            margin: auto;
+            padding: 20px;
+            border: 1px solid #888;
+            width: 80%;
+        }
+
+        /* The Close Button */
+        .close {
+            color: #aaaaaa;
+            float: right;
+            font-size: 28px;
+            font-weight: bold;
+        }
+
+        .close:hover,
+        .close:focus {
+            color: #000;
+            text-decoration: none;
+            cursor: pointer;
+        }
+
+        select, label, button, input, textarea {
+            width: 400px;
+            font-size: 20px;
+            color: #ffffff;
+            font-weight: bold;
+            margin: 0 auto;
+            /*                margin: 0 auto;
+                            text-align: left;
+                            font-size: 20px;*/
+            /*padding: 25px;*/
+        }
+
+        form {
+            width: 450px;
+            background-color: #01B6AD;
+            margin: 0 auto;
+            padding: 25px;
+            /*padding-top: 10px;*/
+        }
+    </style>
+</head>
+<body class="hold-transition skin-blue sidebar-mini">
+<div class="wrapper">
+    <header class="main-header">
+        <div style="width: 100%; height: 50px; background-color: #049b9d;">
+            <div class="navbar-custom-menu" style="background-color: #006666; height: 50px; width: 82px;">
+                <a href="index.html" style=" font-size: 20px; padding: 4px; height: 50px; width: 82px; color: #ffffff;">Sign
+                    out</a>
+            </div>
+        </div>
+    </header>
+    <h1></h1>
+    <div class="col-lg-1"></div>
+    <div class="col-lg-5">
+        <img th:src="@{img/sliderimg/index.png}" style="width: 100%">
+    </div>
+    <div class="col-lg-5">
+        <form action="#" th:action="@{/addtoken}" th:object="${queue}" method="post">
+            <label for="cname" style="font-size: 20px; color: #ffffff; font-weight: bold;">Name
+            </label>
+            <input id="cname" type="text" style="font-size: 20px; color: #000000;" th:field="*{customerName}"><br><br>
+            <label for="Id" style="font-size: 20px; color: #ffffff; font-weight: bold;">Identification No
+            </label>
+            <input id="Id" type="text" style="font-size: 20px; color: #000000;" th:field="*{customerId}"><br><br>
+            <label for="category" style="font-size: 20px; color: #ffffff; font-weight: bold;">Category
+            </label>
+            <select id="category" style="font-size: 18.2px; color: #000000;" th:field="*{category}">
+                <option th:value="0">Please Select Category</option>
+                <option th:value="1">Deposit</option>
+                <option th:value="2">Withdraw</option>
+                <option th:value="3">Account</option>
+            </select><br><br>
+            <label for="description" style="font-size: 20px; color: #ffffff; font-weight: bold;">Description
+            </label>
+            <textarea id="description" style="font-size: 20px; color: #000000;" type="text"
+                      th:field="*{description}"></textarea>
+            <!--<input id="description" style="font-size: 20px;" type="" placeholder="Description" th:field="*{description}">-->
+            <br><br>
+            <!--                <label for="login" style="font-size: 25px; color: #ffffff; font-weight: bold;">Log In
+                            </label>-->
+            <button id="myBtn"
+                    style="font-size: 20px; color: #ffffff; font-weight: bold; height: 35px; background-color: #00bfa5;">
+                Save
+            </button>
+        </form>
+    </div>
+
+    <div class="col-lg-1"></div>
+    <!--<button id="myBtn">Open Modal</button>-->
+    <div id="myModal" class="modal">
+
+        <!-- Modal content -->
+        <div class="modal-content" style="width: 40%;">
+            <span class="close">&times;</span>
+            <h1 style="color: #01B6AD; text-align: center;">Successfully Create Your Token!</h1>
+            <h1 style="color: red; text-align: center;">Your Token No: #307</h1>
+            <p style="text-align: center;">Please Wait Approximately <b> 30 Minutes </b> For Your Service</p>
+            <center>
+                <button id="mypriBtn"
+                        style="width: 100px; font-size: 20px; color: #ffffff; font-weight: bold; height: 35px; background-color: #00bfa5;">
+                    Print
+                </button>
+            </center>
+        </div>
+
+    </div>
+</div>
+</body>
+</html>

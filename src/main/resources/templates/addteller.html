@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>Add Teller</title>
+    <style>
+        select, label, button, input, textarea {
+            width: 400px;
+            font-size: 20px;
+            color: #ffffff;
+            font-weight: bold;
+            margin: 0 auto;
+            /*                margin: 0 auto;
+                            text-align: left;
+                            font-size: 20px;*/
+            /*padding: 25px;*/
+        }
+
+        form {
+            width: 450px;
+            background-color: #01B6AD;
+            margin: 0 auto;
+            padding: 25px;
+            /*padding-top: 10px;*/
+        }
+    </style>
+</head>
+<link rel="stylesheet" th:href="@{/bootstrap/css/bootstrap.min.css}">
+<body class="hold-transition skin-blue sidebar-mini">
+<div class="wrapper">
+    <header class="main-header">
+
+        <nav class="navbar navbar-static-top" style="background-color: #049b9d;">
+            <a href="#" class="sidebar-toggle" data-toggle="offcanvas" role="button">
+                <span class="sr-only">Toggle navigation</span>
+            </a>
+            <div class="navbar-custom-menu">
+                <ul class="nav navbar-nav">
+                    <li class="dropdown tasks-menu">
+                        <a href="index.html" class="btn">Sign out</a>
+                    </li>
+                </ul>
+            </div>
+        </nav>
+    </header>
+    <div class="content-wrapper" style="background-color: #9fe0e0;">
+        <!--<section class="content-header">-->
+        <h1>Add User</h1>
+        <!--</section>-->
+        <section class="content">
+            <form action="#" th:action="@{/saveteller}" th:object="${teller}" method="post">
+                <label for="uid" style="font-size: 20px; color: #ffffff; font-weight: bold;">User Id
+                </label>
+                <input id="uid" type="text" style="font-size: 20px; color: #000000;" th:field="*{userId}"><br><br>
+                <label for="fname" style="font-size: 20px; color: #ffffff; font-weight: bold;">First Name
+                </label>
+                <input id="fname" type="text" style="font-size: 20px; color: #000000;" th:field="*{firstName}"><br><br>
+                <label for="lname" style="font-size: 20px; color: #ffffff; font-weight: bold;">Last Name
+                </label>
+                <input id="lname" type="text" style="font-size: 20px; color: #000000;" th:field="*{lastName}"><br><br>
+                <label for="conno" style="font-size: 20px; color: #ffffff; font-weight: bold;">Contract No
+                </label>
+                <input id="conno" type="text" style="font-size: 20px; color: #000000;" th:field="*{contractNo}"><br><br>
+                <label for="email" style="font-size: 20px; color: #ffffff; font-weight: bold;">Email
+                </label>
+                <input id="email" type="email" style="font-size: 20px; color: #000000;" th:field="*{email}"><br><br>
+                <label for="designation" style="font-size: 20px; color: #ffffff; font-weight: bold;">Designation
+                </label>
+                <input id="designation" type="text" style="font-size: 20px; color: #000000;" th:field="*{designation}"><br><br>
+                <label for="address" style="font-size: 20px; color: #ffffff; font-weight: bold;">Address
+                </label>
+                <input id="address" type="text" style="font-size: 20px; color: #000000;" th:field="*{address}"><br><br>
+               <label for="skill" style="font-size: 20px; color: #ffffff; font-weight: bold;">Skill
+                </label>
+                <select id="skill" style="font-size: 18.2px; color: #000000;" th:field="*{skill}">
+                    <option th:value="0">Please Select Skill</option>
+                    <option th:value="1">Account Information</option>
+                    <option th:value="2">Withdraw</option>
+                    <option th:value="3">Deposit</option>
+                    <option th:value="4">Latter of Credit</option>
+                </select><br><br>
+                <label for="managerId" style="font-size: 20px; color: #ffffff; font-weight: bold;">Manager Id
+                </label>
+                <input id="managerId" style="font-size: 20px; color: #000000;" type="text" th:field="*{managerId}"><br><br>
+                <label for="branchId" style="font-size: 20px; color: #ffffff; font-weight: bold;">Branch Code
+                </label>
+                <input id="branchId" type="text" th:field="*{branchId}">
+                <input type="hidden" th:value="CO0001" name='companyId'>
+                 <br><br>
+                <button id="myBtn"
+                        style="font-size: 20px; color: #ffffff; font-weight: bold; height: 35px; background-color: #00bfa5;">
+                    Save
+                </button>
+            </form>
+        </section>
+    </div>
+</div>
+</body>
+</html>

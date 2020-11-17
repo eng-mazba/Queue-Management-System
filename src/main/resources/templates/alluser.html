@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>User List</title>
+    <link rel="stylesheet" th:href="@{/bootstrap/css/bootstrap.min.css}">
+    <!--<link rel="stylesheet" th:href="@{/dist/css/font-awesome.min.css}">-->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.5.0/css/font-awesome.min.css">
+</head>
+<body class="hold-transition skin-blue sidebar-mini">
+<div class="wrapper">
+    <header class="main-header">
+        <!--<a href="#" class="logo" style="background-color: #006666;">-->
+            <!--&lt;!&ndash; mini logo for sidebar mini 50x50 pixels &ndash;&gt;-->
+            <!--<b>QMS</b>-->
+        <!--</a>-->
+        <nav class="navbar navbar-static-top" style="background-color: #049b9d;">
+            <a href="#" class="sidebar-toggle" data-toggle="offcanvas" role="button">
+                <span class="sr-only">Toggle navigation</span>
+            </a>
+            <div class="navbar-custom-menu">
+                <ul class="nav navbar-nav">
+                    <li class="dropdown tasks-menu">
+                        <a href="index.html" class="btn ">Sign out</a>
+                    </li>
+                </ul>
+            </div>
+        </nav>
+    </header>
+    <section class="content" id="user">
+        <div class="row">
+            <div class="col-md-1"></div>
+            <div class="col-md-10">
+                <div class="box box-info">
+                    <div class="box-header with-border">
+                        <h3 class="box-title" id="dataStatic" style="alignment-adjust: central"><b>All Users</b></h3>
+                    </div>
+                    <div class="box-body">
+                        <button id="btnFind" class="btn btn-primary" th:onclick="'window.location.href = \'' + @{/adduser} + '\''" >
+                            <i class="fa fa-plus"></i>&nbsp;&nbsp;New User
+                        </button>
+
+                        <!--<div>-->
+                        <br><br>
+                        <!--<div>-->
+                        <table class="table">
+                            <thead style="background-color: #049b9d; color: #ffffff; font-size: 20px; ">
+                            <tr>
+                                <th>#Id</th>
+                                <th>User Name</th>
+                                <th>User Type</th>
+                                <th>User Status</th>
+                                <th>Last Login</th>
+                                <th>Log Out</th>
+                                <th>Login Device</th>
+                                <th>Edit</th>
+                            </tr>
+                            </thead>
+                            <tr th:each="user : ${listusers}">
+                                <td th:text="${user.id}">Counter No</td>
+                                <td th:text="${user.userName}">User Name</td>
+                                <td th:text="${user.userType}">User Type</td>
+                                <td th:text="${user.userStatus}">User Status</td>
+                                <td th:text="${user.lastLogin}">Last Login</td>
+                                <td th:text="${user.logOut}">Log Out</td>
+                                <td th:text="${user.loginDevice}">Login Device</td>
+                                <td><a th:href="@{'/getuser/'+${user.id}}">edit<i class="fa fa-edit"></i></a>
+                                </td>
+                            </tr>
+
+                        </table>
+                    </div>
+                </div>
+                <!-- /.box -->
+            </div>
+            <div class="col-md-1"></div>
+        </div>
+    </section>
+</div>
+</body>
+</html>

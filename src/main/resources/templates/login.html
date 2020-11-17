@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>Customer Login</title>
+    <style th:inline="text">
+        /*body {*/
+        /*background: url(@{/img/queue-managerbanner-1.jpg});*/
+        /*!*no-repeat center center fixed;*!*/
+        /*!*box-shadow: 120px 80px 40px 20px #0ff;*!*/
+        /*}*/
+
+        select, label, button, input {
+            width: 400px;
+            font-size: 25px;
+            color: #ffffff;
+            font-weight: bold;
+            margin: 0 auto;
+            /*                margin: 0 auto;
+                            text-align: left;
+                            font-size: 20px;*/
+            /*padding: 25px;*/
+        }
+
+        form {
+            width: 400px;
+            background-color: #01B6AD;
+            margin: 0 auto;
+            padding: 30px;
+            /*padding-top: 10px;*/
+        }
+    </style>
+</head>
+<body th:style="'background: url(/img/queue-managerbanner-1.jpg) no-repeat center center fixed;'">
+<h1 style="text-align:center; color: #ffffff;font-size: 40px;">Token Counter</h1>
+<div style="width: 400px; background-color: #01B6AD; margin: 0 auto;">
+    <!--<img th:src="@{/img/customer.JPG}" height="200" alt="Flowers in Chania">-->
+    <form action="#" th:action="@{/checkLogin}" th:object="${users}" method="post">
+        <label for="uname">User Name
+        </label>
+        <input id="uname" type="text" style="color: black;" th:field="*{userName}"><br><br>
+        <label for="password">Password
+        </label>
+        <input id="password" type="password" style="color: black;" th:field="*{password}"><br><br>
+        <!--                <label for="login" style="font-size: 25px; color: #ffffff; font-weight: bold;">Log In
+                        </label>-->
+        <button type="submit" style="background-color: #00bfa5;">Log In</button>
+    </form>
+</div>
+</body>
+</html>

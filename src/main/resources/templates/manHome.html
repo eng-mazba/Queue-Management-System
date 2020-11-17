@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>System Management</title>
+    <link rel="stylesheet" th:href="@{/bootstrap/css/bootstrap.min.css}">
+    <link rel="stylesheet" th:href="@{/dist/css/AdminLTE.min.css}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.5.0/css/font-awesome.min.css">
+    <link rel="stylesheet" th:href="@{/dist/css/skins/_all-skins.min.css}">
+    <!--<link rel="stylesheet" th:href="@{/dist/css/font-awesome.min.css}">-->
+    <link rel="stylesheet" th:href="@{/dist/css/ionicons.min.css}">
+    <script th:src="@{/plugins/jQuery/jquery-2.2.3.min.js}"></script>
+</head>
+
+<body class="hold-transition skin-blue sidebar-mini">
+<div class="wrapper">
+    <header class="main-header">
+        <a href="#" class="logo" style="background-color: #006666;">
+            <!-- mini logo for sidebar mini 50x50 pixels -->
+            <b>QMS</b>
+        </a>
+        <nav class="navbar navbar-static-top" style="background-color: #049b9d;">
+            <a href="#" class="sidebar-toggle" data-toggle="offcanvas" role="button">
+                <span class="sr-only">Toggle navigation</span>
+            </a>
+            <div class="navbar-custom-menu">
+                <ul class="nav navbar-nav">
+                    <li class="dropdown tasks-menu">
+                        <a href="index.html" class="btn ">Sign out</a>
+                    </li>
+                </ul>
+            </div>
+        </nav>
+    </header>
+    <aside class="main-sidebar" style="background-color: #145260;">
+        <section class="sidebar">
+            <ul class="sidebar-menu">
+                <li class="treeview">
+                    <a href="systemManegmentHome.html">
+                        <i class="fa fa-dashboard"></i><span>Dashboard</span>
+                    </a>
+                </li>
+                <!--                        <li class="treeview" >
+                                            <a href="#" id="com">
+                                                <i class="fa fa-bank"></i><span >All Companies</span>
+                                            </a>
+                                        </li>
+                                        <li class="treeview">
+                                            <a href="#" id="alluser">
+                                                <i class="fa fa-user"></i><span>All Users</span>
+                                            </a>
+                                        </li>
+                                        <li class="treeview">
+                                            <a href="#" id="allqueue">
+                                                <i class="fa fa-question"></i><span>All Queue</span>
+                                            </a>
+                                        </li>-->
+
+                <!--                        <li class="treeview">
+                                            <a href="addNewCompany.html">
+                                                <i class="fa fa-plus-square"></i> <span>Add New Company</span>
+                                            </a>
+                                        </li>-->
+                <li class="treeview">
+                    <a href="#">
+                        <i class="fa fa-bank"></i> <span>Janata Bank</span>
+                        <span class="caret"></span>
+                    </a>
+                    <ul class="treeview-menu" style="padding-left: 0px;">
+                        <li><a href="/alluser" target="_blank" id="alluser"><i class="fa fa-user"></i><span>Users</span></a></li>
+                        <!--<li ><a href="services.html"><i class="fa fa-anchor"></i>Services</a></li>-->
+                        <li><a href="#" id="allqueue"><i class="fa fa-question"></i><span>Queues</span></a></li>
+                        <li class="treeview">
+                            <a href="#">
+                                <i class="fa fa-cogs"></i> <span>Configuration</span>
+                                <span class="caret"></span>
+                            </a>
+                            <ul class="treeview-menu">
+                                <li><a href="#" id="general"><i class="fa fa-crosshairs"></i><span>General</span></a>
+                                </li>
+                                <li><a href="/alltaller" id="teller"><i class="fa fa-user"></i><span>Teller</span></a>
+                                </li>
+                                <li><a href="#" id="serv"><i class="fa fa-sitemap"></i><span>Service</span></a></li>
+                                <li><a href="#" id="branch"><i class="fa fa-home"></i><span>Branch</span></a></li>
+                                <li><a href="#" id="aud"><i class="fa fa-file-audio-o"></i><span>Audio</span></a></li>
+                                <li><a href="#"><i class="fa fa-tv"></i><span>Display</span></a></li>
+                                <li><a href="#"><i class="fa fa-print"></i><span>Token Printer</span></a></li>
+                            </ul>
+                        </li>
+                        <li><a href="#"><i class="fa fa-file"></i><span>Reports</span></a></li>
+                    </ul>
+                </li>
+            </ul>
+        </section>
+    </aside>
+    <div class="content-wrapper" style="background-color: #9fe0e0;">
+        <section class="content-header">
+        </section>
+        <section class="content">
+
+        </section>
+    </div>
+</div>
+<script th:src="@{/bootstrap/js/bootstrap.min.js}"></script>
+<script th:src="@{/dist/js/demo.js}"></script>
+<script th:src="@{/dist/js/app.min.js}"></script>
+<script th:src="@{/plugins/slimScroll/jquery.slimscroll.min.js}"></script>
+</body>
+</html>
